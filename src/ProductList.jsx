@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ProductList.css';
 import CartItem from './CartItem';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from './CartSlice';
 
 function ProductList({ onHomeClick }) {
@@ -10,6 +10,19 @@ function ProductList({ onHomeClick }) {
     const [addedToCart, setAddedToCart] = useState({});
 
     const dispatch = useDispatch();
+
+    // Get cart items from Redux
+    const CartItems = useSelector((state) => state.cart.items);
+
+    // Calculate total quantity of items in cart
+    const calculateTotalQuantity = () => {
+        return CartItems
+            ? CartItems.reduce(
+                (total, item) => total + item.quantity,
+                0
+            )
+            : 0;
+    };
 
     const plantsArray = [
         {
@@ -278,9 +291,13 @@ function ProductList({ onHomeClick }) {
 
     return (
         <div>
+
             <div className="navbar" style={styleObj}>
+
                 <div className="tag">
+
                     <div className="luxury">
+
                         <img
                             src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png"
                             alt=""
@@ -291,6 +308,7 @@ function ProductList({ onHomeClick }) {
                             onClick={(e) => handleHomeClick(e)}
                         >
                             <div>
+
                                 <h3 style={{ color: 'white' }}>
                                     Paradise Nursery
                                 </h3>
@@ -298,12 +316,16 @@ function ProductList({ onHomeClick }) {
                                 <i style={{ color: 'white' }}>
                                     Where Green Meets Serenity
                                 </i>
+
                             </div>
                         </a>
+
                     </div>
+
                 </div>
 
                 <div style={styleObjUl}>
+
                     <div>
                         <a
                             href="#"
@@ -315,16 +337,18 @@ function ProductList({ onHomeClick }) {
                     </div>
 
                     <div>
+
                         <a
                             href="#"
                             onClick={(e) => handleCartClick(e)}
                             style={styleA}
                         >
+
                             <h1 className="cart">
+
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 256 256"
-                                    id="IconChangeColor"
                                     height="68"
                                     width="68"
                                 >
@@ -353,29 +377,44 @@ function ProductList({ onHomeClick }) {
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                         strokeWidth="2"
-                                        id="mainIconPathAttribute"
                                     ></path>
                                 </svg>
+
+                                <span className="cart-quantity">
+                                    {calculateTotalQuantity()}
+                                </span>
+
                             </h1>
+
                         </a>
+
                     </div>
+
                 </div>
+
             </div>
 
             {!showCart ? (
+
                 <div className="product-grid">
+
                     {plantsArray.map((category, index) => (
+
                         <div key={index}>
+
                             <h1>
                                 <div>{category.category}</div>
                             </h1>
 
                             <div className="product-list">
+
                                 {category.plants.map((plant, plantIndex) => (
+
                                     <div
                                         className="product-card"
                                         key={plantIndex}
                                     >
+
                                         <img
                                             className="product-image"
                                             src={plant.image}
@@ -407,17 +446,27 @@ function ProductList({ onHomeClick }) {
                                                 ? 'Added to Cart'
                                                 : 'Add to Cart'}
                                         </button>
+
                                     </div>
+
                                 ))}
+
                             </div>
+
                         </div>
+
                     ))}
+
                 </div>
+
             ) : (
+
                 <CartItem
                     onContinueShopping={handleContinueShopping}
                 />
+
             )}
+
         </div>
     );
 }
