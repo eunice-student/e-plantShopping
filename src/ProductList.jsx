@@ -53,18 +53,19 @@ function ProductList({ onHomeClick }) {
                 }
             ]
         },
+
         {
             category: "Aromatic Fragrant Plants",
             plants: [
                 {
                     name: "Lavender",
-                    image: "https://images.unsplash.com/photo-1611909023032-2d6b3134ecba?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    image: "https://images.unsplash.com/photo-1611909023032-2d6b3134ecba?q=80&w=1074&auto=format&fit=crop",
                     description: "Calming scent, used in aromatherapy.",
                     cost: "$20"
                 },
                 {
                     name: "Jasmine",
-                    image: "https://images.unsplash.com/photo-1592729645009-b96d1e63d14b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wZXlfY29sbGVjdGlvbnx8fHx8fA%3D%3D",
+                    image: "https://images.unsplash.com/photo-1592729645009-b96d1e63d14b?q=80&w=1170&auto=format&fit=crop",
                     description: "Sweet fragrance, promotes relaxation.",
                     cost: "$18"
                 },
@@ -94,6 +95,7 @@ function ProductList({ onHomeClick }) {
                 }
             ]
         },
+
         {
             category: "Insect Repellent Plants",
             plants: [
@@ -123,7 +125,7 @@ function ProductList({ onHomeClick }) {
                 },
                 {
                     name: "Lavender",
-                    image: "https://images.unsplash.com/photo-1611909023032-2d6b3134ecba?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wZXlfY29sbGVjdGlvbnx8fHx8fA%3D%3D",
+                    image: "https://images.unsplash.com/photo-1611909023032-2d6b3134ecba?q=80&w=1074&auto=format&fit=crop",
                     description: "Calming scent, used in aromatherapy.",
                     cost: "$20"
                 },
@@ -135,6 +137,7 @@ function ProductList({ onHomeClick }) {
                 }
             ]
         },
+
         {
             category: "Medicinal Plants",
             plants: [
@@ -176,12 +179,13 @@ function ProductList({ onHomeClick }) {
                 }
             ]
         },
+
         {
             category: "Low Maintenance Plants",
             plants: [
                 {
                     name: "ZZ Plant",
-                    image: "https://images.unsplash.com/photo-1632207691143-643e2a9a9361?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wZXlfY29sbGVjdGlvbnx8fHx8fA%3D%3D",
+                    image: "https://images.unsplash.com/photo-1632207691143-643e2a9a9361?q=80&w=464&auto=format&fit=crop",
                     description: "Thrives in low light and requires minimal watering.",
                     cost: "$25"
                 },
@@ -282,11 +286,15 @@ function ProductList({ onHomeClick }) {
                             alt=""
                         />
 
-                        <a href="/" onClick={(e) => handleHomeClick(e)}>
+                        <a
+                            href="/"
+                            onClick={(e) => handleHomeClick(e)}
+                        >
                             <div>
                                 <h3 style={{ color: 'white' }}>
                                     Paradise Nursery
                                 </h3>
+
                                 <i style={{ color: 'white' }}>
                                     Where Green Meets Serenity
                                 </i>
@@ -390,6 +398,9 @@ function ProductList({ onHomeClick }) {
                                             className="product-button"
                                             onClick={() =>
                                                 handleAddToCart(plant)
+                                            }
+                                            disabled={
+                                                addedToCart[plant.name]
                                             }
                                         >
                                             {addedToCart[plant.name]
